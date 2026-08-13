@@ -1,0 +1,33 @@
+import React from "react";
+import Button from "./Button";
+
+function TableRow({ user, handleDelete }) {
+  return (
+    <tr key={user.id} className="border-b border-gray-200">
+      <td className="px-4 py-3 text-sm text-gray-700">
+        <img
+          src={user.avatar}
+          alt={user.firstName}
+          className="w-10 h-10 rounded-full"
+        />
+      </td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.firstName}</td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.lastName}</td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.age}</td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.email}</td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.phone}</td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.city}</td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.profession}</td>
+      <td className="px-4 py-3 text-center flex gap-1.5 ">
+        <Button variant={"primary"} text="edit" />
+        <Button
+          variant={"secondary"}
+          text="delete"
+          onClick={() => handleDelete(user.id)}
+        />
+      </td>
+    </tr>
+  );
+}
+
+export default TableRow;
