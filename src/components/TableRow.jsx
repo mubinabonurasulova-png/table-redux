@@ -4,13 +4,7 @@ import Button from "./Button";
 function TableRow({ user, handleDelete }) {
   return (
     <tr key={user.id} className="border-b border-gray-200">
-      <td className="px-4 py-3 text-sm text-gray-700">
-        <img
-          src={user.avatar}
-          alt={user.firstName}
-          className="w-10 h-10 rounded-full"
-        />
-      </td>
+      <td className="px-4 py-3 text-sm text-gray-700">{user.id}</td>
       <td className="px-4 py-3 text-sm text-gray-700">{user.firstName}</td>
       <td className="px-4 py-3 text-sm text-gray-700">{user.lastName}</td>
       <td className="px-4 py-3 text-sm text-gray-700">{user.age}</td>

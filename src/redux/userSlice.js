@@ -12,9 +12,16 @@ export const userSlice = createSlice({
     deleteUs: (state, action) => {
       state.users = state.users.filter((user) => user.id !== action.payload);
     },
+    editUs: (state, action) => {
+      state.users.map((user) =>
+        user.id === action.payload.id
+          ? { ...user, ...action.payload.data }
+          : user,
+      );
+    },
   },
 });
 
-export const { deleteUs } = userSlice.actions;
+export const { deleteUs, editUs } = userSlice.actions;
 
 export default userSlice.reducer;
