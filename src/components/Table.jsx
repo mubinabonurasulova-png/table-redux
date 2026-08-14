@@ -1,18 +1,13 @@
-import React, { useState } from "react";
 import TableRow from "./TableRow";
-import { editUs, deleteUs } from "../redux/userSlice";
+import { deleteUs } from "../redux/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 
-function Table() {
+function Table({ onEdit }) {
   const count = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
 
   function handleDelete(id) {
     dispatch(deleteUs(id));
-  }
-
-  function EditUs(id) {
-    dispatch(editUs(id));
   }
 
   return (
@@ -33,12 +28,13 @@ function Table() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {count.map((user) => (
+            {count.map((user, index) => (
               <TableRow
                 user={user}
+                index={index}
                 key={user.id}
                 handleDelete={handleDelete}
-                editUs={editUs}
+                handleEdit={onEdit}
               />
             ))}
           </tbody>

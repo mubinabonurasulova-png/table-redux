@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { users } from "../data/users";
 
 const initialState = {
@@ -12,16 +12,24 @@ export const userSlice = createSlice({
     deleteUs: (state, action) => {
       state.users = state.users.filter((user) => user.id !== action.payload);
     },
-    editUs: (state, action) => {
-      state.users.map((user) =>
-        user.id === action.payload.id
-          ? { ...user, ...action.payload.data }
-          : user,
+    updateUser(state, action) {
+      const index = state.users.findIndex(
+        (user) => user.id === action.payload.id,
       );
+      if (index !== -1) {
+        state.users[index] = { ...state.users[index], ...action.payload };
+      }
+    },
+    addUser(state, action) {
+      const newUser = {
+        id: nanoid(),
+        ...action.payload,
+      };
+      state.users.push(newUser);
     },
   },
 });
 
-export const { deleteUs, editUs } = userSlice.actions;
+export const { deleteUs, updateUser, addUser } = userSlice.actions;
 
 export default userSlice.reducer;
